@@ -58,11 +58,19 @@ public class BoardController {
     // 게시글 상세 조회
     @GetMapping("/board/details/{boardId}")
     @ResponseStatus(HttpStatus.OK)
-
     public Response getBoard(@PathVariable Long boardId) {
-        BoardGetResponseDto boardGetResponseDto= boardService.getBoardOne(boardId);
+        BoardGetResponseDto boardGetResponseDto = boardService.getBoardOne(boardId);
         return Response.success(boardGetResponseDto);
     }
+
+
+    @GetMapping("/board/details/qqqqq/{boardId}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response getDetailsBoard(@PathVariable Long boardId){
+        BoardDetailsResponseDto boardDetailsResponseDto = boardService.getBoardDetails(boardId);
+        return Response.success(boardDetailsResponseDto);
+    }
+
 
     // 게시글 작성
     @PostMapping("/board/write")
@@ -90,6 +98,7 @@ public class BoardController {
 
     // 게시글 삭제
     @DeleteMapping("/board/details/{boardId}")
+    @ResponseStatus(HttpStatus.OK)
     public Response deleteBoard(@PathVariable Long boardId) {
         boardService.deleteBoard(boardId);
         return Response.success();

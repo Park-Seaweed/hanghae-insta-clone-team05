@@ -5,11 +5,14 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 @Getter
 public class CommentResponseDto {
     private Long commentId;
     private String username;
     private String comment;
+
 
     public CommentResponseDto(Comment comment) {
         this.commentId = comment.getId();

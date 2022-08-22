@@ -13,10 +13,9 @@ public class BoardDetailsResponseDto {
     private List<String> imgUrl;
 
     private List<CommentResponseDto> commentList;
-    private List<CommitResponseDto> commitList;
 
 
-    public BoardDetailsResponseDto(Long boardId, Board board, List<String> imgUrl, List<CommentResponseDto> commentList, List<CommitResponseDto> commitList) {
+    public BoardDetailsResponseDto(Long boardId, Board board, List<String> imgUrl, List<CommentResponseDto> commentList) {
         this.boardId = boardId;
         this.username = board.getMember().getUsername();
         this.content = board.getContent();

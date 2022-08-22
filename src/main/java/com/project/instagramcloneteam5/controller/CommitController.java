@@ -24,6 +24,8 @@ public class CommitController {
         return Response.success(commitResponseDto);
     }
 
+    @GetMapping("/")
+
 
 
     // Commit 삭제

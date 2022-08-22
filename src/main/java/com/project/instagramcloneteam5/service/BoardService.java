@@ -64,7 +64,22 @@ public class BoardService {
         listMap.put("BoardInfo", list);
         return listMap;
     }
+//T
+    public BoardDetailsResponseDto getBoardDetails(Long boardId){
+        Board board = boardRepository.findById(boardId).orElseThrow(BoardNotFoundException::new);
 
+        List<String> imgUrl = imageRepository.findAllByBoard(board)
+                .stream()
+                .map(Image::getImgUrl)
+                .collect(Collectors.toList());
+
+        List<Comment> findCommentByBoard = commentRepository.findAllByBoard(board);
+        List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
+        for (Comment comment : findCommentByBoard) {
+            commentResponseDtoList.add(new CommentResponseDto(comment));
+        }
+        return new BoardDetailsResponseDto(boardId, board, imgUrl, commentResponseDtoList);
+    }
     // 게시글 상세 조회
     public BoardGetResponseDto getBoardOne(Long boardId) {
         Board board = boardRepository.findById(boardId).orElseThrow(BoardNotFoundException::new);
@@ -150,7 +165,7 @@ public class BoardService {
         // 본인의 게시글만 삭제 가능
         //TODO : 필수확인 구조 이상함
 
-        if (board.getMember().getUsername().equals(member)) {
+        if (board.getMember().equals(member)) {
             System.out.println("이름1 = " + board.getMember() + "이름2 = " + member);
             throw new PrivateException(Code.WRONG_ACCESS_POST_DELETE);
         }

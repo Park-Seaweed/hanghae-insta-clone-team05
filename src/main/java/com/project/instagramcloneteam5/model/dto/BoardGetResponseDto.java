@@ -17,7 +17,7 @@ public class BoardGetResponseDto {
 
     private List<String> imgUrl;
 
-    private List<CommentResponseDto> commentList;
+
 
 
 
@@ -28,7 +28,6 @@ public class BoardGetResponseDto {
         this.content = board.getContent();
         this.imgUrl = imgUrl;
         this.commentCount =commentList.size();
-        this.commentList = commentList;
     }
 
 
